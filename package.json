@@ -7,6 +7,7 @@
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
+  "repository": "git@github.com:Tetrarium/itdating.git",
   "author": "TurovA",
   "license": "MIT",
   "devDependencies": {
