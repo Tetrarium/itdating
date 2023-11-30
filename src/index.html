@@ -43,16 +43,49 @@
               </div>
               <div class="authentication__widget">
                 <!-- Квиз -->
-                <div class="quiz">
+                <div class="quiz hidden">
                   <div class="quiz__title">Перед регистрацией ответьте на несколько вопросов:</div>
                   <div class="quiz__question">
-                    <button class="quiz__option">Гриффиндор</button>
-                    <span>или</span>
-                    <button class="quiz__option">Слизерин</button>
+                    <button class="quiz__option quiz__strrow">Гриффиндор</button>
+                    <span class="quiz__strrow">или</span>
+                    <button class="quiz__option quiz__strrow">Слизерин</button>
                   </div>
-                  <div class="quiz__buttons"></div>
+                  <div class="quiz__buttons">
+                    <button class="quiz__button">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 -960 960 960" width="24">
+                        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+                      </svg>
+                    </button>
+                  </div>
                   <div class="quiz__description">Это поможет нам точнее подобрать вам подходящего партнера</div>
                 </div>
+                <!-- Форма регистрации -->
+                <form action="" class="form-reg">
+                  <div class="form-reg__row">
+                    <span class="form-reg__hint">Имя:</span>
+                    <input type="text" class="form-reg__input" name="name">
+                  </div>
+                  <div class="form-reg__row">
+                    <span class="form-reg__hint">Email:</span>
+                    <input type="text" class="form-reg__input" name="email">
+                  </div>
+                  <div class="form-reg__row">
+                    <span class="form-reg__hint">Ник:</span>
+                    <input type="text" class="form-reg__input" name="nickname">
+                  </div>
+                  <div class="form-reg__row">
+                    <span class="form-reg__hint">Пароль:</span>
+                    <input type="text" class="form-reg__input" name="password">
+                  </div>
+                  <div class="form-reg__controls">
+                    <button class="form-reg__button form-reg__btn-back">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 -960 960 960" width="24">
+                        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+                      </svg>
+                    </button>
+                    <button class="form-reg__button form-reg__btn-next">Продолжить</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>

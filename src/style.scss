@@ -50,11 +50,6 @@ body {
 
 }
 
-.main {
-  flex-shrink: 1;
-  flex-grow: 1;
-}
-
 .menu {
   display: flex;
   list-style: none;
@@ -87,6 +82,206 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.main {
+  flex-shrink: 1;
+  flex-grow: 1;
+
+  &__row {
+    display: flex;
+  }
+
+  &__top {
+    margin-top: 89px;
+    margin-bottom: 68px;
+  }
+
+  &__description {
+    margin-top: 68px;
+    margin-bottom: 154px;
+  }
+
+  &__slogan {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-grow: 1;
+  }
+
+}
+
+.slogan {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.authentication {
+  width: 299px;
+  height: 332px;
+  background: #d9d9d9;
+
+  display: flex;
+  flex-direction: column;
+
+  &__options {
+    display: flex;
+
+    border-bottom: 1px solid #5302FF;
+  }
+
+  &__option {
+    width: 50%;
+    height: 45px;
+    border: none;
+    background: inherit;
+    position: relative;
+
+    &:first-child {
+      border-right: 1px solid #5302FF;
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      bottom: -12px;
+      left: calc(50% - 7px);
+
+      border-top: 11px solid #c9c7e3;
+      border-right: 7px solid transparent;
+      border-left: 7px solid transparent;
+    }
+  }
+
+  &__widget {
+    padding: 26px 20px 30px;
+    flex-grow: 1;
+  }
+}
+
+.quiz {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__title {
+    font-size: 12px;
+  }
+
+  &__question {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__strrow {
+    width: 113px;
+    height: 34px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__option {
+    border: none;
+    background: #c0c0c0;
+  }
+
+  &__description {
+    font-size: 9px;
+  }
+
+  &__button {
+    border: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    background: #c0c0c0;
+  }
+
+  &__buttons {
+    margin-bottom: 10px;
+  }
+}
+
+.form-reg {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+    flex-shrink: 1;
+  }
+
+  &__hint {
+    margin-bottom: 2px;
+  }
+
+  &__input {
+    width: 100%;
+    height: 25px;
+    padding: 0 5px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    background: #c0c0c0;
+  }
+
+  &__controls {
+    margin-top: 19px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+  }
+
+  &__button {
+    background: #cecece;
+    border: none;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #c0c0c0;
+    }
+  }
+
+  &__btn-back {
+    width: 30px;
+    height: 30px;
+  }
+
+  &__btn-next {
+    width: 90px;
+    height: 25px;
+  }
+}
+
+.description {
+  width: 100%;
+  height: 290px;
+  background: #d9d9d9;
+  padding: 11px 34px;
+  font-size: 12px;
+  font-weight: normal;
+
+  &__title {
+    margin-bottom: 18px;
   }
 }
 
@@ -145,83 +340,6 @@ body {
   }
 }
 
-.main {
-
-  &__row {
-    display: flex;
-  }
-
-  &__top {
-    margin-top: 89px;
-    margin-bottom: 68px;
-  }
-
-  &__description {
-    margin-top: 68px;
-    margin-bottom: 154px;
-  }
-
-  &__slogan {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    flex-grow: 1;
-  }
-
-}
-
-.slogan {
-  font-size: 28px;
-  font-weight: 400;
-}
-
-.authentication {
-  width: 299px;
-  height: 332px;
-  background: #d9d9d9;
-
-  &__options {
-    display: flex;
-
-    border-bottom: 1px solid #5302FF;
-  }
-
-  &__option {
-    width: 50%;
-    height: 45px;
-    border: none;
-    background: inherit;
-    position: relative;
-
-    &:first-child {
-      border-right: 1px solid #5302FF;
-    }
-
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      width: 0;
-      height: 0;
-      bottom: -11px;
-      left: calc(50% - 7px);
-
-      border-top: 11px solid #c9c7e3;
-      border-right: 7px solid transparent;
-      border-left: 7px solid transparent;
-    }
-  }
-}
-
-.description {
-  width: 100%;
-  height: 290px;
-  background: #d9d9d9;
-  padding: 11px 34px;
-  font-size: 12px;
-  font-weight: normal;
-
-  &__title {
-    margin-bottom: 18px;
-  }
+.hidden {
+  display: none;
 }
