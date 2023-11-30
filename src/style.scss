@@ -394,6 +394,78 @@ body {
   }
 }
 
+.form-pass-rec {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__main {
+    flex-grow: 1;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4px;
+  }
+
+  &__hint {
+    margin-bottom: 2px;
+  }
+
+  &__input {
+    width: 100%;
+    height: 25px;
+    padding: 0 5px;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    background: #c0c0c0;
+  }
+
+  &__help {
+    font-size: 7px;
+    margin-top: 11px;
+    text-align: center;
+  }
+
+  &__description {
+    font-size: 9px;
+    margin-bottom: 17px;
+  }
+
+  &__controls {
+    margin-top: 14px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+  }
+
+  &__button {
+    background: #cecece;
+    border: none;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #c0c0c0;
+    }
+  }
+
+  &__btn-back {
+    width: 30px;
+    height: 30px;
+  }
+
+  &__btn-next {
+    width: 90px;
+    height: 25px;
+  }
+}
+
 .description {
   width: 100%;
   height: 290px;
