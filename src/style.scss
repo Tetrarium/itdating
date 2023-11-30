@@ -607,6 +607,62 @@ body {
   }
 }
 
+.filter {
+  background: #f0f0f0;
+  padding: 14px 0;
+
+  &__container {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+  }
+
+  &__gender {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__age {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__hint {
+    margin-bottom: 8px;
+  }
+
+  &__range-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__range {
+    width: 98px;
+    height: 1px;
+    background: #d9d9d9;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 7px;
+      height: 7px;
+      background-color: #fff;
+      border: 2px solid #d9d9d9;
+      border-radius: 50%;
+    }
+
+    &::-moz-range-thumb {
+      width: 5px;
+      height: 5px;
+      -moz-appearance: none;
+    }
+  }
+}
+
 .hidden {
   display: none;
 }
