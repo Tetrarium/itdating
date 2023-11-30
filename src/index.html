@@ -131,7 +131,7 @@
                   </div>
                 </form>
                 <!-- Форма восстановления пароля -->
-                <form action="" class="form-pass-rec">
+                <form action="" class="form-pass-rec hidden">
                   <div class="form-pass-rec__main">
                     <div class="form-pass-rec__description">
                       Укажите адрес электронной почты и мы отправим вам письмо для восстановления пароля:
@@ -148,6 +148,30 @@
                       </svg>
                     </button>
                     <button class="form-pass-rec__button form-pass-rec__btn-next">Подтвердить</button>
+                  </div>
+                </form>
+                <!-- Форма смены пароля -->
+                <form action="" class="form-pass-change">
+                  <div class="form-pass-change__main">
+                    <div class="form-pass-change__description">
+                      Укажите новый пароль:
+                    </div>
+                    <div class="form-pass-change__row">
+                      <span class="form-pass-change__hint">Пароль:</span>
+                      <input type="text" class="form-pass-change__input" name="password">
+                    </div>
+                    <div class="form-pass-change__row">
+                      <span class="form-pass-change__hint">Подтверждение пароля:</span>
+                      <input type="text" class="form-pass-change__input" name="password-confirm">
+                    </div>
+                  </div>
+                  <div class="form-pass-change__controls">
+                    <button class="form-pass-change__button form-pass-change__btn-back">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 -960 960 960" width="24">
+                        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+                      </svg>
+                    </button>
+                    <button class="form-pass-change__button form-pass-change__btn-next">Сменить пароль</button>
                   </div>
                 </form>
               </div>
