@@ -60,7 +60,7 @@
                   <div class="quiz__description">Это поможет нам точнее подобрать вам подходящего партнера</div>
                 </div>
                 <!-- Форма регистрации -->
-                <form action="" class="form-reg">
+                <form action="" class="form-reg hidden">
                   <div class="form-reg__row">
                     <span class="form-reg__hint">Имя:</span>
                     <input type="text" class="form-reg__input" name="name">
@@ -86,10 +86,54 @@
                     <button class="form-reg__button form-reg__btn-next">Продолжить</button>
                   </div>
                 </form>
+                <!-- Сообщение о подтверждении -->
+                <div class="confirm-reg hidden">
+                  <div class="confirm-reg__description">
+                    <p class="confirm-reg__text">Для подтверждения регистрации мы отправили вам письмо по адресу <span
+                        class="confirm-reg__mail">test@mail.com</span>.</p>
+                    <p class="confirm-reg__text">Проверьте указанный адрес электронной почты для подтверждения данных
+                      аккаунта</p>
+                  </div>
+                  <div class="confirm-reg__controls">
+                    <button class="confirm-reg__button form-reg__btn-back">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 -960 960 960" width="24">
+                        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+                      </svg>
+                    </button>
+                    <button class="confirm-reg__button confirm-reg__btn-next">Продолжить</button>
+                  </div>
+                </div>
+                <!-- Форма входа -->
+                <form action="" class="form-log">
+                  <div class="form-log__main">
+                    <div class="form-log__row">
+                      <span class="form-log__hint">Email</span>
+                      <input type="text" class="form-log__input" name="name">
+                    </div>
+                    <div class="form-log__row">
+                      <span class="form-log__hint">Пароль:</span>
+                      <input type="text" class="form-log__input" name="password">
+                    </div>
+                    <div class="form-log__help">
+                      <a href="#" class="form-log__link">Забыли пароль?</a>
+                    </div>
+                  </div>
+                  <div class="form-log__description">
+                    Нажимая “Войти”, вы соглашаетесь с условиями использования и политикой конфиденциальности
+                  </div>
+                  <div class="form-log__controls">
+                    <button class="form-log__button form-log__btn-back">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 -960 960 960" width="24">
+                        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+                      </svg>
+                    </button>
+                    <button class="form-log__button form-log__btn-next">Войти</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-          <form action="" class="form-registration"></form>
+          <!-- <form action="" class="form-registration"></form> -->
         </div>
         <div class="main__row main__description">
           <div class="description">
