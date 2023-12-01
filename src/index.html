@@ -195,7 +195,7 @@
           <div class="container filter__container">
             <div class="filter__gender">
               <span class="filter__hint">Я ищу:</span>
-              <select name="gender" id="filter__gender">
+              <select name="gender" id="filter__gender" class="filter__input">
                 <option value="male">Мужчины</option>
                 <option value="female">Женщины</option>
               </select>
@@ -209,20 +209,20 @@
               </div>
             </div>
             <div class="filter__city">
-              <span>Город:</span>
-              <input type="text" name="city" />
+              <span class="filter__hint">Город:</span>
+              <input type="text" name="city" value="Париж, France" class="filter__input" />
             </div>
-            <div class="filter__tags">
-              <span>Теги</span>
-              <div>
-                <button>+</button>
-                <button>Гриффиндор</button>
-                <button>Латте</button>
-                <button>Маск</button>
-                <button>еще 5..</button>
+            <div class="filter__tags tags">
+              <span class="tags__title">Теги:</span>
+              <div class="tags__items">
+                <button class="tags__tag">+</button>
+                <button class="tags__tag">Гриффиндор</button>
+                <button class="tags__tag">Латте</button>
+                <button class="tags__tag">Маск</button>
+                <button class="tags__tag">еще 5..</button>
               </div>
             </div>
-            <button>Все фильтры</button>
+            <button class="filter__opn-all filter__input">Все фильтры</button>
           </div>
         </section>
       </div>

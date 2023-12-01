@@ -613,13 +613,40 @@ body {
 
   &__container {
     display: flex;
-    align-items: end;
+    align-items: start;
     justify-content: space-between;
+  }
+
+  &__input {
+    height: 28px;
+    padding: 0 9px;
+    border: none;
+    outline: none;
+    background-color: #cccccc;
+    border-radius: 3px;
+
   }
 
   &__gender {
     display: flex;
     flex-direction: column;
+
+    select {
+      width: 149px;
+
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      appearance: none !important;
+
+      background-image: url(./assets/icons/arrow-down.svg);
+      background-position: 95% center;
+      background-repeat: no-repeat;
+
+      &::-ms-expand {
+        display: none;
+      }
+    }
   }
 
   &__age {
@@ -629,12 +656,14 @@ body {
 
   &__hint {
     margin-bottom: 8px;
+    margin-top: 5px;
   }
 
   &__range-container {
     display: flex;
     align-items: center;
     gap: 5px;
+    margin-top: 7px;
   }
 
   &__range {
@@ -661,8 +690,50 @@ body {
       -moz-appearance: none;
     }
   }
+
+  &__city {
+    display: flex;
+    flex-direction: column;
+    width: 136px;
+  }
+
+  
+  &__opn-all {
+    align-self: flex-end;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+.tags {
+  display: flex;
+  width: 30%;
+
+  &__title {
+    margin-right: 17px;
+    margin-top: 5px;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 17px;
+  }
+
+  &__tag {
+    padding: 5px 12px;
+    border: none;
+    outline: none;
+    background-color: #cccccc;
+    border-radius: 3px;
+  }
+
 }
 
 .hidden {
   display: none;
+}
+
+.border {
+  border: 1px solid lightblue;
 }
