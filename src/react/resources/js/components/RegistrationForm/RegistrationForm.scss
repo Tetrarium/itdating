@@ -1,0 +1,57 @@
+.form-reg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    &__row {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 4px;
+    }
+
+    &__hint {
+        margin-bottom: 2px;
+    }
+
+    &__input {
+        width: 100%;
+        height: 25px;
+        padding: 0 5px;
+        border: none;
+        border-radius: 3px;
+        outline: none;
+        background: #c0c0c0;
+    }
+
+    &__controls {
+        margin-top: 19px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+    }
+
+    &__button {
+        background: #cecece;
+        border: none;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #c0c0c0;
+        }
+    }
+
+    &__btn-back {
+        width: 30px;
+        height: 30px;
+    }
+
+    &__btn-next {
+        width: 90px;
+        height: 25px;
+    }
+}

@@ -1,0 +1,49 @@
+.authentication {
+    width: 299px;
+    height: 332px;
+    background: #d9d9d9;
+
+    display: flex;
+    flex-direction: column;
+
+    &__options {
+        display: flex;
+
+        border-bottom: 1px solid #5302FF;
+    }
+
+    &__option {
+        width: 50%;
+        height: 45px;
+        border: none;
+        background: inherit;
+        position: relative;
+
+        &_selected {
+            background: #c9c7e3;
+        }
+
+        &:first-child {
+            border-right: 1px solid #5302FF;
+        }
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 0;
+            height: 0;
+            bottom: -12px;
+            left: calc(50% - 7px);
+
+            border-top: 11px solid #c9c7e3;
+            border-right: 7px solid transparent;
+            border-left: 7px solid transparent;
+        }
+    }
+
+    &__widget {
+        padding: 26px 20px 30px;
+        flex-grow: 1;
+    }
+}
