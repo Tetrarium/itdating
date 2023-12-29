@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import { fetchPasswordRecovery } from '../../fetchingAPI/authentication';
+import { showErrorMessage } from '../../assets/utility';
+
 import './ConfirmPassRecoveryMsg.scss';
-import { FORM_DATA_HEADER } from '../../assets/headers';
-import axios from 'axios';
 
 let intervalId;
 
@@ -12,6 +13,7 @@ const stubHandler = () => {
 function ConfirmPassRecoveryMsg({ email = 'test@test.com', onBackClick = stubHandler }) {
     const DISABLE_BUTTON_INTERVAL = 5000;
     const [disabledSubmitButton, setDisabledSubmitButton] = useState(true);
+    const [ message, setMessage ] = useState(null);
 
     const disableSubmitButton = () => {
         setDisabledSubmitButton(true);
@@ -22,30 +24,17 @@ function ConfirmPassRecoveryMsg({ email = 'test@test.com', onBackClick = stubHan
         }, DISABLE_BUTTON_INTERVAL)
     };
 
-    const fetchMailConfirm = () => {
-        axios({
-            method: 'post',
-            url: `/forgot-password`,
-            data: { email },
-            headers: FORM_DATA_HEADER,
-        })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
-
     useEffect(() => {
         disableSubmitButton();
     }, []);
 
-    const sendHandler = (evt) => {
+    const handleSubmit = async (evt) => {
         evt.preventDefault();
-
         disableSubmitButton();
-        fetchMailConfirm();
+        
+        const result = await fetchPasswordRecovery({ email });
+
+        showErrorMessage(result.message, setMessage);
     }
 
     return (
@@ -54,6 +43,7 @@ function ConfirmPassRecoveryMsg({ email = 'test@test.com', onBackClick = stubHan
                 <p className="confirm-reg__text">Письмо с данными для восстановления пароля отправлено на адрес <span
                     className="confirm-reg__mail">{email}</span>.</p>
                 <p className="confirm-reg__text">Проверьте указанный адрес электронной почты для дальнейших действий</p>
+                <p className="confirm-reg__text">{message}</p>
             </div>
             <div className="confirm-reg__controls">
                 <button className="confirm-reg__button form-reg__btn-back" onClick={onBackClick}>
@@ -64,7 +54,7 @@ function ConfirmPassRecoveryMsg({ email = 'test@test.com', onBackClick = stubHan
                 <button
                     className="confirm-reg__button confirm-reg__btn-next"
                     disabled={disabledSubmitButton}
-                    onClick={sendHandler}
+                    onClick={handleSubmit}
                 >Отправить снова</button>
             </div>
         </div>

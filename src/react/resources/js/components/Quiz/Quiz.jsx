@@ -1,48 +1,7 @@
 import { useEffect, useState } from 'react';
+import { fetchQuizQuestions } from '../../fetchingAPI/authentication';
+
 import './Quiz.scss';
-import { APPLICATION_JSON_HEADER } from '../../assets/headers';
-
-import axios from 'axios';
-
-const Status = {
-    SUCCESS: 'success',
-    ERROR: 'error',
-};
-
-const fetchQuizQuestions = async (questionHistory, controller) => {
-    let question = {
-        first: null,
-        second: null,
-    };
-
-    await axios({
-        method: 'post',
-        url: '/quiz',
-        headers: APPLICATION_JSON_HEADER,
-        data: {
-            history: questionHistory,
-        },
-        signal: controller.signal,
-    })
-        .then((response) => {
-            console.log('ответы квиза');
-            console.log(response);
-            const { data } = response;
-
-            if (data.status === Status.SUCCESS) {
-                question = {
-                    first: data.first,
-                    second: data.second,
-                }
-            }
-        })
-        .catch((err) => {
-            console.log('Ошибка полученя данных квиза');
-            console.log(err);
-        })
-
-    return question;
-}
 
 function Quiz({ numQuestions, tags = [], endQuizHandle = () => { } }) {
     const [questions, setQuestions] = useState({
@@ -52,24 +11,20 @@ function Quiz({ numQuestions, tags = [], endQuizHandle = () => { } }) {
     const [history, setHistory] = useState(tags);
 
     const fillAnswers = async () => {
-        const abortContriller = new AbortController()
+        const result = await fetchQuizQuestions(history);
 
-        const answers = await fetchQuizQuestions(history, abortContriller);
-        console.log(answers);
-        setQuestions(answers);
-
-        return () => {
-            abortContriller.abort();
+        if (result.ok) {
+            setQuestions(result.questions);
+        } else {
+            console.log(result.message);
         }
     }
 
     useEffect(() => {
-        console.log(history);
         if (history.length < numQuestions) {
             fillAnswers();
         } else {
             console.log('quiz ended');
-            // callback with pass history
             endQuizHandle(history);
         }
     }, [history])

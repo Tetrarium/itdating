@@ -1,0 +1,36 @@
+.form-add-photo {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 15px;
+    border-radius: 5px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    font-size: 14px;
+
+    &__input {
+        width: 100%;
+        // height: 25px;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 3px;
+        outline: none;
+        background: #c0c0c0;
+    }
+
+    &__button {
+        padding: 5px 10px;
+        background: #cecece;
+        border: none;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #c0c0c0;
+        }
+    }
+}

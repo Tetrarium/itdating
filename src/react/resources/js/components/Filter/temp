@@ -1,0 +1,99 @@
+<div className="filter__gender">
+                    <span className="filter__hint">Я ищу:</span>
+                    <select
+                        name="gender"
+                        id="filter__gender"
+                        className="filter__input"
+                        value={gender}
+                        onChange={changeFilterHandler}
+                    >
+                        <option value="male">Мужчины</option>
+                        <option value="female">Женщины</option>
+                    </select>
+                </div>
+                <div className="filter__age">
+                    <span className="filter__hint">Возраст: от
+                        <select
+                            className='filter__age-select'
+                            name='age_start'
+                            value={age_start}
+                            onChange={changeFilterHandler}
+                        >
+                            {renderOptions(minAge, age_end)}
+                        </select>
+                        до
+                        <select
+                            className='filter__age-select'
+                            name='age_end'
+                            value={age_end}
+                            onChange={changeFilterHandler}
+                        >
+                            {renderOptions(age_start, maxAge)}
+                        </select>
+                    </span>
+                    
+                    {/* <div className="filter__range-container">
+                        <span>{minAge}</span>
+                        <input
+                            className="filter__range"
+                            type="range"
+                            name="age_start"
+                            // id="filter__age"
+                            min={minAge}
+                            max={age_end}
+                            step="1"
+                            value={age_start}
+                            onChange={changeFilterHandler}
+                        />
+                        <span>{age_end}</span>
+                    </div> */}
+                    {/* <div className="filter__range-container">
+                        <span>{age_start}</span>
+                        <input
+                            className="filter__range"
+                            type="range"
+                            name="age_end"
+                            // id="filter__age"
+                            min={age_start}
+                            max={maxAge}
+                            step="1"
+                            value={age_end}
+                            onChange={changeFilterHandler}
+                        />
+                        <span>{maxAge}</span>
+                    </div> */}
+                </div>
+                <div className="filter__city">
+                    <span className="filter__hint">Город:</span>
+                    <input
+                        type="text"
+                        name="city"
+                        value={city}
+                        className="filter__input"
+                        onChange={changeFilterHandler}
+                        />
+                </div>
+                <div className="filter__tags tags">
+                    <span className="tags__title">Теги:</span>
+                    <div className="tags__items">
+                        <button className="tags__tag">+</button>
+                        {renderTags()}
+                        {numShowedTags < tags.length
+                            && <button
+                                className="tags__tag"
+                                onClick={addShowedTags}
+                            >еще {tags.length - numShowedTags}..</button>
+                        }
+                        
+                    </div>
+                </div>
+                <div className='filter__column'>
+                    <input
+                        className='filter__search filter__input'
+                        name='search'
+                        value={search}
+                        placeholder='Введите имя'
+                        onChange={changeFilterHandler}
+                    />
+                    <button className="filter__opn-all filter__input">Все фильтры</button>
+                </div>

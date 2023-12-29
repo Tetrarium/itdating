@@ -1,0 +1,32 @@
+.checkbox {
+    vertical-align: baseline;
+
+    
+    &__input {
+        -webkit-appearance: none;
+        appearance: none;
+
+        width: 1.3em;
+        height: 1.3em;
+
+        margin-right: 0.5em;
+        border: 0.15em solid #007a7a;
+        border-radius: 0.5em;
+        outline: none;
+        cursor: pointer;
+
+        &_checked {
+            background: #007a7e;
+            position: relative;
+
+            &::before {
+                content: "\2714";
+                font-size: 1.6em;
+                position: absolute;
+                right: -0.15em;
+                top: -0.25em;
+                color: #fff;
+            }
+        }
+    }
+}

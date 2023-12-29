@@ -1,20 +1,26 @@
 import { useState } from 'react';
-import './LogInForm.scss';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { fetchLogin } from '../../fetchingAPI/authentication';
+import { showErrorMessage } from '../../assets/utility';
 
-import { FORM_DATA_HEADER } from '../../assets/headers';
+import './LogInForm.scss';
 
 const stubHandler = () => {
     console.log('The stub handler has worked!');
   }
 
-function LogInForm({setIsLogIn, onForgotPass = stubHandler}) {
+const timerId = null;
+
+function LogInForm({ onForgotPass = stubHandler}) {
     const initialState = {
         email: '',
         password: '',
     };
 
+    const navigate = useNavigate();
+
     const [currentState, setCurrentState] = useState(initialState);
+    const [message, setMessage] = useState(null);
 
     const changeInputHandler = (evt) => {
         evt.preventDefault();
@@ -25,27 +31,18 @@ function LogInForm({setIsLogIn, onForgotPass = stubHandler}) {
         })
     }
 
-    const submitHundler = (evt) => {
+    const submitHundler = async (evt) => {
         evt.preventDefault();
 
-        // console.log(currentState)
-        // const data = objectToFormData(currentState);
-        // console.log(Object.fromEntries(data.entries()));
-
-        axios({
-            method: 'post',
-            url: '/login',
-            data: currentState,
-            headers: FORM_DATA_HEADER,
-        })
-            .then((response) => {
-                console.log(response);
-                setCurrentState(initialState);
-                setIsLogIn(true);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        const result = await fetchLogin(currentState);
+        console.log(result);
+        if (result.ok) {
+            setCurrentState(initialState);
+            navigate('/homepage/users');
+        } else {
+            console.log(result.message);
+            showErrorMessage(result.message, setMessage);
+        }
     }
 
     const forgotPassHandler = (evt) => {
@@ -78,6 +75,9 @@ function LogInForm({setIsLogIn, onForgotPass = stubHandler}) {
                 </div>
                 <div className="form-log__help">
                     <a href="/forgot-password" className="form-log__link" onClick={forgotPassHandler}>Забыли пароль?</a>
+                </div>
+                <div className="form-log__row">
+                    {message}
                 </div>
             </div>
             <div className="form-log__description">

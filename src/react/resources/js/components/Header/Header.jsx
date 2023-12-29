@@ -1,3 +1,5 @@
+import { Link, NavLink } from 'react-router-dom';
+
 import './Header.scss';
 
 function Header() {
@@ -7,7 +9,18 @@ function Header() {
                 <div className="header__logo"><a href="/">Лого</a></div>
                 <div className="header__menu">
                     <ul className="menu">
-                        <li className="menu__item">Поиск</li>
+                        <li className="menu__item">
+                            <NavLink
+                                className='menu__nav'
+                                to='/homepage/users'
+                            >Поиск</NavLink>
+                        </li>
+                        <li className="menu__item">
+                            <NavLink
+                                className='menu__nav'
+                                to='/homepage/me'
+                            >Моя анкета</NavLink>
+                        </li>
                         <li className="menu__item">Сообщения</li>
                         <li className="menu__item">Блог</li>
                     </ul>
@@ -16,7 +29,7 @@ function Header() {
                     <ul className="user-control">
                         <li className="user-control__item">Премиум</li>
                         <li className="user-control__item">Баланс</li>
-                        <li className="user-control__item"><a href="/logout">Аккаунт</a></li>
+                        <li className="user-control__item"><a aria-disabled>Аккаунт</a></li>
                     </ul>
                 </div>
             </div>

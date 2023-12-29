@@ -1,0 +1,150 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    width: 100%;
+
+
+    // font-family: 'Inter';
+    font-style: normal;
+    // font-weight: 700;
+    font-size: 14px;
+    // line-height: 20px;
+    color: #000000;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    &__row {
+        display: flex;
+        gap: 20px;
+        border: 1px solid rgba(0, 0, 0, .1);
+        border-radius: 5px;
+        align-items: flex-start;
+        justify-content: space-between;
+        align-self: stretch;
+    }
+
+    &__logo {
+        background: #D9D9D9;
+        border-radius: 10px;
+        width: 128px;
+        height: 128px;
+        // margin-top: 3px;
+    }
+
+    &__photo {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        object-fit: contain;
+
+        &_missing {
+            background: url(./add_a_photo.svg) no-repeat;
+            background-position: center;
+        }
+    }
+
+    &__header {
+        flex-grow: 1;
+    }
+
+    &__name {
+        display: flex;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        color: #000000;
+        margin-top: 3px;
+        width: 150px;
+    }
+
+    &__city {
+        font-weight: initial;
+        font-size: 13px;
+        height: 15px;
+    }
+
+    &__status {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 12px;
+        color: #929090;
+        margin-top: 5px;
+    }
+
+    &__short {
+        margin-top: 12px;
+    }
+
+    &__bio {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+
+        width: 100%;
+        height: 64px;
+
+        background: #D9D9D9;
+        padding: 0 10px;
+        font-size: inherit;
+    }
+
+    &__col {
+        min-height: 9vw;
+        width: 31.5%;
+        background: #D9D9D9;
+        border-radius: 5px;
+        padding: 12px;
+    }
+
+    &__subtitle {
+        font-weight: 700;
+    }
+}
+
+.actions {
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+    gap: 10px;
+
+    &__button {
+        width: 60px;
+        height: 60px;
+
+        background: #D9D9D9;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 11px;
+        text-align: center;
+        transition: background .3s;
+
+        &:hover {
+            background: #929090;
+        }
+    }
+}
+
+.profile-galery {
+    display: flex;
+    height: 10vw;
+    width: 100%;
+    justify-content: space-between;
+
+    &__item {
+        height: 100%;
+        width: 24%;
+        border-radius: 5px;
+        object-fit: cover;
+    }
+}
+
+.profile-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}

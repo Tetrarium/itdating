@@ -1,0 +1,33 @@
+.profiles-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    &__main {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2vw 2vw;
+        justify-items: stretch;
+        width: 100%;
+
+        @media screen and (max-width: 1000px) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    
+        @media screen and (max-width: 800px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__control {
+        margin-top: 20px;
+    }
+
+    &__btn {
+        padding: 5px 20px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+    }
+}

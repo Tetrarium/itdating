@@ -9,14 +9,14 @@ import LogInForm from '../LogInForm/LogInForm';
 import PasswordRecoveryForm from '../PasswordRecoveryForm/PasswordRecoveryForm';
 import ConfirmPassRecoveryMsg from '../ConfirmPassRecoveryMsg/ConfirmPassRecoveryMsg';
 import PasswordChangeForm from '../PasswordChangeForm/PasswordChangeForm';
-import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 /**
  * Разобратся с лишним ререндерингом квиза.
  */
 
 // Типы виджетов аутентификации
-const WidgetTypes = {
+export const WidgetTypes = {
     QUIZ: 'QUIZ',
     REGISTER: 'REGISTER',
     CONFIRM_REGISTER: 'CONFIRM_REGISTER',
@@ -42,15 +42,31 @@ const Status = {
 function Athentication(props) {
     const startWidget = WidgetTypes.QUIZ;
 
-    const [ widgetType, setWidgetType ] = useState(startWidget);
-    const [ tags, setTags ] = useState([]);
-    const [ email, setEmail ] = useState('');
-    const [ registrationData, setRegistrationData ] = useState({
+    const [widgetType, setWidgetType] = useState(startWidget);
+    const [tags, setTags] = useState([]);
+    const [email, setEmail] = useState('');
+    const [registrationData, setRegistrationData] = useState({
         name: '',
         email: '',
     });
+    const [changePasswordState, setChangePasswordState] = useState({
+        email: '',
+        token: '',
+    })
 
     const [questionHistory, setQuestionHistory] = useState([]);
+
+    const locationApp = useLocation();
+
+    useEffect(() => {
+        if (locationApp.state && locationApp.state.widgetType)  {
+            setChangePasswordState({
+                email: locationApp.state.email,
+                token: locationApp.state.token,
+            })
+            setWidgetType(locationApp.state.widgetType)
+        }
+    }, [locationApp.state]);
 
     const setRegisterForm = (evt) => {
         evt.preventDefault();
@@ -80,11 +96,6 @@ function Athentication(props) {
 
         return basic;
     }
-
-    // Временный для отладки
-    useEffect(() => {
-        console.log(tags);
-    }, [tags])
 
     const completeQuiz = (history) => {
         setTags(history);
@@ -116,11 +127,6 @@ function Athentication(props) {
         setWidgetType(WidgetTypes.REGISTER);
     }
 
-    // Временный для отладки
-    // useEffect(() => {
-    //     console.log(mail);
-    // }, [mail]);
-
     const openPassRecoveryForm = () => {
         setWidgetType(WidgetTypes.PASSWORD_RECOVERY);
     };
@@ -133,6 +139,15 @@ function Athentication(props) {
         setEmail(data.email);
         openConfirmRecoveryPassMsg();
     }
+
+    const openPasswordChangeForm = (data) => {
+        setChangePasswordState(data);
+        setWidgetType(WidgetTypes.PASSWORD_CHANGE);
+    }
+
+    // useEffect(() => {
+    //     console.log(changePasswordState);
+    // }, [changePasswordState]);
 
     const renderWidget = () => {
         switch (widgetType) {
@@ -170,7 +185,7 @@ function Athentication(props) {
                     email={email}
                     onBackClick={openPassRecoveryForm} />
             case WidgetTypes.PASSWORD_CHANGE:
-                return <PasswordChangeForm />
+                return <PasswordChangeForm params={changePasswordState} />
 
             default:
                 return null;
@@ -190,9 +205,6 @@ function Athentication(props) {
                 >Вход</button>
             </div>
             <div className="authentication__widget">
-                {/* <ConfirmRegistrationMsg /> */}
-                {/* <PasswordRecoveryForm /> */}
-                {/* <PasswordChangeForm /> */}
                 {renderWidget()}
             </div>
         </div>

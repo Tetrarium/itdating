@@ -1,86 +1,61 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom/client";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import Main from "./Main/Main";
+import Home from "./Home/Home.jsx";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-import Main from "./Main/Main";
+import VerifyEmailAddress from "./VerifyEmailAddress/VerifyEmailAddress.jsx";
+import PasswordReset from "./PasswordReset/PasswordReset.jsx";
+
+import { logIn, logOut } from "../store/reducers/LoginSlice.js";
 
 import './App.scss';
-import axios from "axios";
-import Home from "./Home/Home.jsx";
+import { fetchLoginState } from "../fetchingAPI/authentication.js";
 
 function App() {
-    const [isLogIn, setIsLogIn] = useState(false);
+    const { isLogIn } = useSelector(state => state.loginReducer);
+    const dispatch = useDispatch();
 
-    const logout = (evt) => {
-        evt.preventDefault();
+    const navigate = useNavigate();
 
-        axios.get('/logout')
-            .then((response) => {
-                console.log(response);
-
-                if(response && response.data && response.data.status && response.data.status === 'success') {
-                    setIsLogIn(false);
-                    location.reload();
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-
-        console.log('Выйти!');
+    const setLoginState = async () => {
+        const state = await fetchLoginState();
+        if (state) {
+            dispatch(logIn());
+            navigate('/homepage/users')
+        } else {
+            dispatch(logOut());
+            navigate('/login');
+        }
     }
 
-    useEffect(() => {
-        axios.get('/check')
-            .then((response) => {
-                // console.log(response);
-                if (response.data && response.data.result) {
-                    // console.log('В приложении!!!');
-                    setIsLogIn(true);
-                } else {
-                    setIsLogIn(false);
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }, []);
+    useEffect( () => {
+        // fetchLoginState();
+        // console.log(isLogIn);
+        setLoginState();
+    }, [isLogIn]);
 
     return (
         <>
             <Header />
-            {isLogIn
-                && <div className="tmp tmp__msg">Вы вошли в приложение</div>
-            }
+            <Routes>
+                <Route path='/login' element={<Main />} />
+                <Route path='/homepage/*' element={<Home />} />
+                <Route path='/email/verify/:id/hash' element={<VerifyEmailAddress />} />
+                <Route path='/reset-password/:token' element={<PasswordReset />} />
 
-            {isLogIn
-                ? <Home />
-                : <Main setIsLogIn={setIsLogIn} />
-            }
+                {/* <Route
+                    path='/'
+                    element={<Navigate to={isLogIn ? '/login' : '/homepage/users'} />}
+                /> */}
 
-            {/* <Main setIsLogIn={setIsLogIn} /> */}
-            {/* {<Home /> } */}
+                <Route path='*' element={<div>Страницы не существует</div>} />
+            </Routes>
             <Footer />
-
-            {/* Временная кнопка выхода из приложения */}
-            {isLogIn
-                && <button className="tmp tmp__btn" onClick={logout}>Выйти</button>
-            }
         </>
     );
 }
-
-// const appContainer = document.querySelector('#app');
-// console.log(appContainer);
-
-// if (appContainer) {
-//     ReactDOM
-//         .createRoot(appContainer)
-//         .render(
-//             <React.StrictMode>
-//                 <App />
-//             </React.StrictMode>
-//         );
-// }
 
 export default App;

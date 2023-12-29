@@ -1,62 +1,45 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import { showErrorMessage as showMessage } from '../../assets/utility';
+import { fetchChangePassword, fetchLogin } from '../../fetchingAPI/authentication';
+
 import './PasswordChangeForm.scss';
-import { FORM_DATA_HEADER } from '../../assets/headers';
 
-let timerId = null;
-
-function PasswordChangeForm({ email = 'test@test.com' }) {
+function PasswordChangeForm({params}) {
     const initialState = {
-        email,
+        email: '',
         password: '',
         password_confirmation: '',
-        token: 'token'
+        token: '',
+        ...params,
     }
     const [currentState, setCurrentState] = useState(initialState);
-
     const [message, setMessage] = useState(null);
+    const navigate = useNavigate();
 
-    const showMessage = (msg) => {
-        if (timerId) {
-            clearTimeout(timerId);
-            timerId = null;
-        }
-        setMessage(msg);
-
-        setTimeout(() => {
-            setMessage(null);
-            clearTimeout(timerId);
-            timerId = null;
-        }, 2000);
-    }
-
-    const submitHundler = (evt) => {
+    const submitHundler = async (evt) => {
         evt.preventDefault();
 
-        axios({
-            method: 'post',
-            url: '/reset-password',
-            data: currentState,
-            headers: FORM_DATA_HEADER
-        })
-            .then((response) => {
-                console.log(response);
+        const result = await fetchChangePassword(currentState);
 
-                const {data} = response;
+        if (result.ok) {
+            showMessage(result.message, setMessage);
+            const timeoutId = setTimeout(async () => {
+                const loginResult = await fetchLogin({
+                    email: currentState.email,
+                    password: currentState.password,
+                })
 
-                if (data.status === 'error') {
-                    console.log(data);
-                    showMessage(data.result.password[0]);
+                if (loginResult.ok) {
+                    setCurrentState(initialState);
+                    navigate('/homepage');
                 }
-
-                if (data.status === 'success') {
-                    showMessage('Пароль изменен');
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+                clearTimeout(timeoutId);
+            }, 2500);
+        } else {
+            showMessage(result.message, setMessage);
+        }
     }
-
 
     const changeInputHandler = (evt) => {
         evt.preventDefault();

@@ -1,0 +1,43 @@
+
+.pref-enums {
+    position: relative;
+
+    &__items {
+        // position: fixed;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px 5px;
+
+
+    }
+
+    &__btn {
+        display: block;
+        position: absolute;
+        right: 5px;
+        top: -20px;
+        border: none;
+        outline: none;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        background: none;
+        cursor: pointer;
+        padding-inline: 0;
+        padding-block: 0;
+
+        // .material-symbols-outlined {
+        //     padding: 0;
+        //     font-variation-settings:
+        //         'FILL' 0,
+        //         'wght' 400,
+        //         'GRAD' 0,
+        //         'opsz' 20
+        // }
+
+        // &:focus-visible {
+        //     outline: 1px solid #929090;
+        //     border: 1px solid black;
+        // }
+    }
+}

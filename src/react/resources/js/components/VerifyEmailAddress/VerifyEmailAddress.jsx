@@ -27,7 +27,6 @@ function VerifyEmailAddress() {
         axios({
             method: 'post',
             url: window.location.href,
-           /* url: `/email/verify/${id}/hash`,*/
             headers: {
                 "Content-Type": "application/json",
                 // Разобраться с токеном
@@ -40,7 +39,12 @@ function VerifyEmailAddress() {
                 setMessage('Емэйл успешно верифицирован, сейчас откроется главная страница');
 
                 setTimeout(() => {
-                    navigate('/');
+                    navigate('/homepage', {
+                        state: {
+                            isEmailVerified: true,
+                            message: 'Емэйл успешно верифицирован',
+                        }
+                    });
                 }, 2000);
             })
             .catch((err) => {
